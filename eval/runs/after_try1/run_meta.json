@@ -1,0 +1,1 @@
+{"run_id": "f8689cec75", "started_at": "2026-10-22 00:38:44", "steps": ["ask", "likes", "links"], "like_mode": "taste", "like_repeats": 3, "db_products": 9149, "dsl": "/home/swanee/fashion-agent/fashion-bot-v5.yml", "dsl_sha256": "320923460dc6fe7e", "app_dsl_note": "Dify에 실제로 올라간 앱과 같은지는 export한 yml의 해시로 확인"}

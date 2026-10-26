@@ -1,0 +1,200 @@
+{
+  "normal": [
+    {
+      "id": "n01",
+      "query": "빈티지한 아우터 추천해줘",
+      "style": "빈티지",
+      "category": "아우터"
+    },
+    {
+      "id": "n02",
+      "query": "페미닌한 블라우스 보여줘",
+      "style": "페미닌",
+      "category": "상의"
+    },
+    {
+      "id": "n03",
+      "query": "스트릿 느낌 나는 와이드 팬츠",
+      "style": "스트릿",
+      "category": "하의"
+    },
+    {
+      "id": "n04",
+      "query": "미니멀한 니트 추천해줘",
+      "style": "미니멀",
+      "category": "상의"
+    },
+    {
+      "id": "n05",
+      "query": "레이어드하기 좋은 긴팔 티셔츠",
+      "style": "레이어드",
+      "category": "상의"
+    },
+    {
+      "id": "n06",
+      "query": "밀리터리 카고 팬츠 있어?",
+      "style": "밀리터리",
+      "category": "하의"
+    },
+    {
+      "id": "n07",
+      "query": "리본 달린 러블리한 상의",
+      "style": "코케트(리본·레이스)",
+      "category": "상의"
+    },
+    {
+      "id": "n08",
+      "query": "70년대 무드 부츠컷 데님",
+      "style": "70s",
+      "category": "하의"
+    },
+    {
+      "id": "n09",
+      "query": "웨스턴 스타일 자켓 찾아줘",
+      "style": "웨스턴",
+      "category": "아우터"
+    },
+    {
+      "id": "n10",
+      "query": "캐주얼한 후드 집업",
+      "style": "캐주얼",
+      "category": "아우터"
+    },
+    {
+      "id": "n11",
+      "query": "애슬레저 느낌 트랙 팬츠",
+      "style": "애슬레저",
+      "category": "하의"
+    },
+    {
+      "id": "n12",
+      "query": "데일리로 입기 좋은 셔츠",
+      "style": "데일리",
+      "category": "상의"
+    },
+    {
+      "id": "n13",
+      "query": "롱스커트 추천해줘",
+      "category": "하의"
+    },
+    {
+      "id": "n14",
+      "query": "10만원 이하 가디건",
+      "category": "아우터"
+    },
+    {
+      "id": "n15",
+      "query": "검정 레더 자켓",
+      "category": "아우터"
+    },
+    {
+      "id": "n16",
+      "query": "로웨어 자켓 보여줘",
+      "brand": "lowear.co.kr",
+      "category": "아우터"
+    },
+    {
+      "id": "n17",
+      "query": "시즐 바지 추천해줘",
+      "brand": "seezul.com",
+      "category": "하의"
+    },
+    {
+      "id": "n18",
+      "query": "나이스고스트클럽 맨투맨",
+      "brand": "niceghostclub.com",
+      "category": "상의"
+    },
+    {
+      "id": "n19",
+      "query": "코이세이오 니트 있어?",
+      "brand": "coyseio.com",
+      "category": "상의"
+    },
+    {
+      "id": "n20",
+      "query": "seezul 빼고 빈티지 데님 팬츠",
+      "style": "빈티지",
+      "category": "하의",
+      "exclude": "seezul.com"
+    }
+  ],
+  "ood": [
+    {
+      "id": "o01",
+      "query": "화이트 스니커즈 추천해줘",
+      "type": "category",
+      "item": "신발",
+      "expect": "refuse"
+    },
+    {
+      "id": "o02",
+      "query": "첼시 부츠 있어?",
+      "type": "category",
+      "item": "신발",
+      "expect": "refuse"
+    },
+    {
+      "id": "o03",
+      "query": "하객룩 원피스 추천해줘",
+      "type": "category",
+      "item": "원피스",
+      "expect": "refuse"
+    },
+    {
+      "id": "o04",
+      "query": "데일리 크로스백 보여줘",
+      "type": "category",
+      "item": "가방",
+      "expect": "refuse"
+    },
+    {
+      "id": "o05",
+      "query": "겨울에 쓸 비니 추천해줘",
+      "type": "category",
+      "item": "모자",
+      "expect": "refuse"
+    },
+    {
+      "id": "o06",
+      "query": "테크웨어 고어텍스 자켓",
+      "type": "style",
+      "item": "테크웨어(사전엔 있고 어느 브랜드에도 없는 태그)",
+      "expect": "refuse_or_hedge"
+    },
+    {
+      "id": "o07",
+      "query": "올드머니 룩 캐시미어 코트",
+      "type": "style",
+      "item": "올드머니(사전엔 있고 어느 브랜드에도 없는 태그)",
+      "expect": "refuse_or_hedge"
+    },
+    {
+      "id": "o08",
+      "query": "개량한복 저고리 상의 추천해줘",
+      "type": "style",
+      "item": "개량한복(사전 밖)",
+      "expect": "refuse_or_hedge"
+    },
+    {
+      "id": "o09",
+      "query": "오르비엘 셔츠 추천해줘",
+      "type": "brand",
+      "item": "오르비엘",
+      "expect": "refuse"
+    },
+    {
+      "id": "o10",
+      "query": "카일러스튜디오 바지 있어?",
+      "type": "brand",
+      "item": "카일러스튜디오",
+      "expect": "refuse"
+    }
+  ],
+  "likes": {
+    "query": "아우터 추천해줘",
+    "style": "스트릿",
+    "category": "아우터",
+    "n_likes": 3
+  }
+}

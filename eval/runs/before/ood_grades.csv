@@ -1,0 +1,121 @@
+﻿id,type,query,expect,route,shown,refused,hedged,invented_urls,stale_urls,brand_claim,appropriate,answer_text
+o01,category,화이트 스니커즈 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,조건에 맞는 상품을 찾지 못했어요
+o02,category,첼시 부츠 있어?,refuse,상품 추천: 옷이나 아이템을 찾거나 ,2,False,False,[],[],False,False,"목록에서 '첼시 부츠'로 정확히 표기된 상품은 없어서, 첼시 부츠와 가장 분위기가 가까운 하의/신발 연출에 어울릴 만한 하의 위주로 골랐어요.
+
+![fade black slub boots cut jeans](https://lowear.co.kr/web/product/big/202608/93c7516b750cb406c697da2bbed31562.jpg)
+
+**1. fade black slub boots cut jeans** · 로웨어(LOWEAR) · 67,000원
+
+워시드한 블랙 컬러와 부츠컷 실루엣이라 첼시 부츠와 매치했을 때 발목 라인이 자연스럽게 어우러집니다.
+
+[상품 보러가기](https://lowear.co.kr/product/fade-black-slub-boots-cut-jeans/7823/)
+
+ 
+
+---
+
+![Suede-Texture Bootcut Pants](https://ecimg.cafe24img.com/pg301b46384971021/kimzisu/web/pro"
+o03,category,하객룩 원피스 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,2,False,False,[],[],False,False,"오피스·포멀한 페미닌 무드를 우선으로 하객룩에 어울릴 만한 상·하의 중심으로 골랐어요.
+
+![feminine linen deep v knit](https://lowear.co.kr/web/product/big/202507/074327f22b957eacfe7d7ec31c489b71.jpg)
+
+**1. feminine linen deep v knit** · 로웨어(LOWEAR) · 37,000원
+
+브랜드의 페미닌한 무드와 린넨 텍스처를 연상시키는 깔끔한 V 네크라인이 하객룩의 단정한 분위기와 잘 어울립니다.
+
+[상품 보러가기](https://lowear.co.kr/product/feminine-linen-deep-v-knit/6556/)
+
+ 
+
+---
+
+![flower loose-fit knit](https://cdn.imweb.me/thumbnail/20261012/8f1e55cbdb3be.jpg)
+
+**2. flower loose-fit knit** · seezul · 46,000원"
+o04,category,데일리 크로스백 보여줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,3,False,False,[],[],False,False,"데일리·캐주얼 스타일에 맞춰 목록에서 데일리로 들기 좋은 크로스백 관련 아이템을 골랐어요.
+
+![데버 데일리 카고 팬츠 ( deber daily cargo pants )](https://cdn.imweb.me/thumbnail/20250324/054faff5c0fe8.jpg)
+
+**1. 데버 데일리 카고 팬츠 ( deber daily cargo pants )** · seezul · 72,000원
+
+데버 데일리 카고 팬츠는 허리와 힙에 수납 포켓이 있어 크로스백과 함께 가볍게 들기 좋은 데일리한 실루엣입니다.
+
+[상품 보러가기](https://seezul.com/shop_view/401)
+
+ 
+
+---
+
+![EVERYDAY EASY LOGO HALF TEE](https://999humanity.kr/web/product/big/202602/33881c42157cdc90b952a6cc81c61b9c.png)
+
+**2. EVERYDAY EASY LOGO HALF TEE** · 999HUM"
+o05,category,겨울에 쓸 비니 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,2,False,True,[],[],False,False,"겨울용 비니를 찾으셔서 보온성과 빈티지·데일리 무드에 맞춘 아우터 목록에서 어울리는 상품 위주로 골랐어요.
+
+![VINTAGE COTTON CASQUETTE](https://oheshio.com/web/product/big/202608/1b6e68d33cf5cdb74734f71324ff92b4.jpg)
+
+**1. VINTAGE COTTON CASQUETTE** · OHESHIO · 89,000원
+
+코튼 카스켓 제품이라 겨울용 니트 비니와는 소재가 다르지만, 빈티지하고 데일리한 무드라 캐주얼하게 쓰기 좋습니다.
+
+[상품 보러가기](https://oheshio.com/product/vintage-cotton-casquette-black/1449/)
+
+ 
+
+---
+
+![브러쉬드 울 퍼 자켓](https://cafe24img.poxo.com/min7309/web/product/big/202512/bda2b865daf819ccd4d6ecce0c4e1218.jpg)
+
+**2. 브러쉬드 울 퍼 "
+o06,style,테크웨어 고어텍스 자켓,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,조건에 맞는 상품을 찾지 못했어요
+o07,style,올드머니 룩 캐시미어 코트,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,2,False,True,[],[],False,True,"미니멀한 올드머니 룩에 맞는 아우터를 목록에서 골라봤어요.
+
+![FOLK PATTERN CARDIGAN](https://ecimg.cafe24img.com/pg526b05093276042/toomuchtax1/web/product/big/20260221/edf03525c2ac6636c4b4ebdfc99511c2.jpg)
+
+**1. FOLK PATTERN CARDIGAN** · toomuchtax · 282,000원
+
+캐시미어가 섞인 울 혼방 니트로 고급스러운 질감이 있어 올드머니 무드의 포멀하고 정돈된 느낌과 잘 어울립니다.
+
+[상품 보러가기](https://toomuch.tax/product/folk-pattern-cardigan-ivory/1609/)
+
+ 
+
+---
+
+![FOLDED COLLAR CARDIGAN](https://tuomio.co.kr/web/product/big/202609/57581c83fa2f53724168a10b348c64ec.jpg)
+
+**2. FOLDED"
+o08,style,개량한복 저고리 상의 추천해줘,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,3,False,True,[],[],False,True,"요청하신 개량한복 저고리 상의와 가장 가까운 페미닌 스타일의 상의 중에서 상품 특징을 보고 골랐어요.
+
+![Multi-Knot Lace Jersey Top](https://ecimg.cafe24img.com/pg301b46384971021/kimzisu/web/product/big/20260320/1c0a0fb7fb506170e086dbb4bd5f6fc6.jpg)
+
+**1. Multi-Knot Lace Jersey Top** · KIMZISU · 158,000원
+
+레이스 텍스처와 드레이프를 형성하는 매듭 디테일이 한복 저고리의 장식적이고 페미닌한 분위기와 잘 어울립니다.
+
+[상품 보러가기](https://kimzisu.com/product/multi-knot-lace-jersey-topkhaki/774/)
+
+ 
+
+---
+
+![modern twist wrap tee](https://lowear.co.kr/web/product/big/202508/9afd97b4074cbe00a6c5f4"
+o09,brand,오르비엘 셔츠 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,3,False,False,[],[],True,False,"입력하신 '오르비엘 셔츠'는 목록에 없어서 스타일(페미닌, 캐주얼)과 카테고리(상의)에 맞는 상품들 중에서 골랐습니다.
+
+![플래드 체크 셔츠](https://leus.kr/web/product/big/202609/f8777fa85258a46283ca501cd9595e41.jpg)
+
+**1. 플래드 체크 셔츠** · 리어스(LEUS) · 83,000원
+
+여유로운 실루엣과 부드러운 체크 소재라 페미닌하면서도 편안한 캐주얼 무드에 잘 맞습니다.
+
+[상품 보러가기](https://leus.kr/product/리어스-제작-플래드-체크-셔츠-brown/5539/)
+
+ 
+
+---
+
+![오버 스트라이프 셔츠 ( over stripe shirts )](https://cdn.imweb.me/thumbnail/20251015/bb77a305cbaa9.jpg)
+
+**2. 오버 스트라이프 셔츠 ( over stripe shirts )** · seezul · 52,000원
+
+스트라이프 패턴과 오버핏 디자인"
+o10,brand,카일러스튜디오 바지 있어?,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,조건에 맞는 상품을 찾지 못했어요

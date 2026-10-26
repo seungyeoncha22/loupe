@@ -1,0 +1,49 @@
+﻿id,type,query,expect,route,shown,refused,hedged,invented_urls,stale_urls,brand_claim,appropriate,answer_text
+o01,category,화이트 스니커즈 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 스니커즈는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o02,category,첼시 부츠 있어?,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 부츠는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o03,category,하객룩 원피스 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 원피스는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o04,category,데일리 크로스백 보여줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 크로스백은 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o05,category,겨울에 쓸 비니 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 비니는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o06,style,테크웨어 고어텍스 자켓,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,2,False,True,[],[],False,True,"아우터가 많지 않아서 같은 브랜드에서도 골라봤어요.
+
+요청하신 테크웨어·고어텍스 자켓은 목록에 없어, 목록에 있는 아우터 중 디자인이나 무드가 가까운 상품을 골라 추천해요.
+
+![folded collar leather jacket](https://lowear.co.kr/web/product/big/202609/1c0d621ac668bb3423fa83d37d79064b.jpg)
+
+**1. folded collar leather jacket** · 로웨어(LOWEAR) · 89,000원
+
+짧은 기장의 레더 재킷이라 구조적인 실루엣이 테크웨어의 견고한 인상과 일부 닮아 있습니다.
+
+[상품 보러가기](https://lowear.co.kr/product/folded-collar-leather-jacket/7934/)
+
+ 
+
+---
+
+![오시 체크 윈드 자켓 ( oshi check wind jacket )](https://cdn.imweb.me/thumbnail/20250914/7ff2d042"
+o07,style,올드머니 룩 캐시미어 코트,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,1,False,False,[],[],False,False,"올드머니 룩을 염두에 두고 캐시미어·울 혼용의 코트나 보온성 있는 울 코트를 우선으로 골랐어요.
+
+![아몬 핸드메이드 울 코트 ( amon handmade wool coat )](https://cdn.imweb.me/thumbnail/20251111/145555181f890.jpg)
+
+**1. 아몬 핸드메이드 울 코트 ( amon handmade wool coat )** · seezul · 129,000원
+
+울 80% 함유로 보온성이 좋아 캐시미어 코트처럼 중후한 느낌의 올드머니 룩에 잘 어울립니다.
+
+[상품 보러가기](https://seezul.com/shop_view/616)"
+o08,style,개량한복 저고리 상의 추천해줘,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,3,False,False,[],[],False,False,"개량한복 저고리 스타일의 상의를 목록에서 개량한복과 가까운 오버핏·빈티지 무드를 기준으로 골랐어요.
+
+![Bless Fur Zip up Hoodie](https://roughneckseoul.com/web/product/big/202511/a52b399b0dadf8a74e3d44f57adefaae.jpg)
+
+**1. Bless Fur Zip up Hoodie** · ROUGHNECK · 164,000원
+
+워싱이 강하게 들어간 빈티지한 톤과 와이드한 실루엣이 전통적인 저고리의 여유 있는 몸판 느낌과 잘 맞습니다.
+
+[상품 보러가기](https://roughneckseoul.com/product/bless-fur-zip-up-hoodie-charcoal-2nd-restock/3077/)
+
+ 
+
+---
+
+![Off Shoulder Heavy Knit](https://safarispot.kr/web/product/big/202609/ceb06ce9ee3be9b03d8c02613b14c7a3"
+o09,brand,오르비엘 셔츠 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,'오르비엘'은 아직 loupe에 없는 브랜드라 상품을 보여 드릴 수 없어요. 지금은 수집한 25개 브랜드의 상품만 추천해요. 비슷한 분위기의 브랜드는 웹에서 찾아볼 수 있어요.
+o10,brand,카일러스튜디오 바지 있어?,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,'카일러스튜디오'는 아직 loupe에 없는 브랜드라 상품을 보여 드릴 수 없어요. 지금은 수집한 25개 브랜드의 상품만 추천해요. 비슷한 분위기의 브랜드는 웹에서 찾아볼 수 있어요.

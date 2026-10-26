@@ -1,0 +1,57 @@
+﻿id,type,query,expect,route,shown,refused,hedged,invented_urls,stale_urls,brand_claim,appropriate,answer_text
+o01,category,화이트 스니커즈 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 스니커즈는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o02,category,첼시 부츠 있어?,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 부츠는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o03,category,하객룩 원피스 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 원피스는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o04,category,데일리 크로스백 보여줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 크로스백은 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o05,category,겨울에 쓸 비니 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,지금 loupe는 상의·하의·아우터만 모아 두고 있어서 비니는 추천해 드릴 수 없어요. 상의·하의·아우터 중에서 찾으시면 바로 골라 드릴게요.
+o06,style,테크웨어 고어텍스 자켓,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,3,False,True,[],[],False,True,"조건에 맞는 아우터 중에서 질문의 테크웨어·고어텍스 조건과 가장 가까운 디자인 감성을 고려해 골랐어요.
+
+![vintage structure work jacket](https://lowear.co.kr/web/product/big/202603/02fd5b52929ef22ab49d255af343a5d2.jpg)
+
+**1. vintage structure work jacket** · 로웨어(LOWEAR) · 148,000원
+
+워싱된 무드와 구조적인 실루엣으로 테크웨어의 구조감과 잘 어울릴 수 있어 추천드립니다.
+
+[상품 보러가기](https://lowear.co.kr/product/vintage-structure-work-jacket/7371/)
+
+ 
+
+---
+
+![오시 체크 윈드 자켓 ( oshi check wind jacket )](https://cdn.imweb.me/thumbnail/20250914/7ff2d04233e11.jpg)
+
+**2. 오시 체크 윈드 자켓 ( oshi c"
+o07,style,올드머니 룩 캐시미어 코트,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,2,False,False,[],[],False,False,"올드머니 룩용 캐시미어(또는 캐시미어 혼방) 코트를 기준으로 후보를 골랐어요.
+
+![아몬 핸드메이드 울 코트 ( amon handmade wool coat )](https://cdn.imweb.me/thumbnail/20251111/145555181f890.jpg)
+
+**1. 아몬 핸드메이드 울 코트 ( amon handmade wool coat )** · seezul · 129,000원
+
+울 80% 함유로 보온성이 좋고 코트 형태라 클래식한 실루엣이 올드머니 룩에 잘 어울립니다.
+
+[상품 보러가기](https://seezul.com/shop_view/616)
+
+ 
+
+---
+
+![WIDE COLLAR OVERSIZED DOUBLE WOOL COAT](https://ecimg.cafe24img.com/pg301b46384971021/kimzisu/web/product/big/20250828/97808c35a3350c8aa7e90b5ca0ed659f.jpg)
+
+**2. WIDE COLL"
+o08,style,개량한복 저고리 상의 추천해줘,refuse_or_hedge,상품 추천: 옷이나 아이템을 찾거나 ,2,False,False,[],[],False,False,"개량한복 저고리 스타일을 염두에 두고 상의 카테고리에서 한복의 깔끔한 실루엣이나 페미닌·빈티지 무드와 어울리는 상품을 골랐어요.
+
+![KIBON botton over hoodie](https://misekiseoul.kr/web/product/big/202610/5846b6dd4dd8b75ac723bde522628833.jpg)
+
+**1. KIBON botton over hoodie** · 미세키서울 · 98,000원
+
+COTTON 혼용의 후디로 깔끔한 톤과 레이어드하기 좋은 심플한 실루엣이라 개량한복 저고리 위에 가볍게 걸치기 좋습니다.
+
+[상품 보러가기](https://misekiseoul.kr/product/kibon-botton-over-hoodie-grey/3503/)
+
+ 
+
+---
+
+![of off shoulder zip up](https://lowear.co.kr/web/product/big/202605/23195a4659301ff8ccae145b3330ee2f.jpg)"
+o09,brand,오르비엘 셔츠 추천해줘,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,'오르비엘'은 아직 loupe에 없는 브랜드라 상품을 보여 드릴 수 없어요. 지금은 수집한 25개 브랜드의 상품만 추천해요. 비슷한 분위기의 브랜드는 웹에서 찾아볼 수 있어요.
+o10,brand,카일러스튜디오 바지 있어?,refuse,상품 추천: 옷이나 아이템을 찾거나 ,0,True,False,[],[],False,True,'카일러스튜디오'는 아직 loupe에 없는 브랜드라 상품을 보여 드릴 수 없어요. 지금은 수집한 25개 브랜드의 상품만 추천해요. 비슷한 분위기의 브랜드는 웹에서 찾아볼 수 있어요.

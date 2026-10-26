@@ -1,0 +1,19 @@
+# 비밀 키
+.env
+.env.*
+!.env.example
+
+# 의존성/빌드
+node_modules/
+.next/
+*.tsbuildinfo
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 에디터
+.cursor/
+.vscode/
+.DS_Store
+*.log

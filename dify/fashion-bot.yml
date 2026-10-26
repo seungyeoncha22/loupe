@@ -1,0 +1,333 @@
+app:
+  description: 너는 취향 기반 패션 추천 도우미야. 사용자가 좋아하는 옷을 말하면, 제공된 상품 목록에서 스타일과 분위기가 비슷한 옷을
+    카테고리별로 골라 추천해 줘. 상품명, 가격, 판매처와 추천 이유를 함께 한국어로 알려줘.
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: 패션 추천 봇
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:1.0.2@ef203a332d1b2b8952dbaa012be70be3e0a2d576b001489fb3b070efc970ffbe
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openrouter:0.1.9@8f8c69f645a62eb917ae219cfb8b567e39707941fc06c755d565ebea6cd1d88a
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload: {}
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: start
+        targetType: llm
+      id: 1790664545740-source-1792044191923-target
+      source: '1790664545740'
+      sourceHandle: source
+      target: '1792044191923'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1790664707557-source-llm-target
+      selected: false
+      source: '1790664707557'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: 1792044191923-source-1790664707557-target
+      source: '1792044191923'
+      sourceHandle: source
+      target: '1790664707557'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: User Input
+        type: start
+        variables: []
+      height: 71
+      id: '1790664545740'
+      position:
+        x: 1097.045206084057
+        y: -487.3865329154517
+      positionAbsolute:
+        x: 1097.045206084057
+        y: -487.3865329154517
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        dataset_ids:
+        - Z1vK6xRbz4WdXxhTKLhkXrGnd8El1inZKwbdhEmOvVffieHM1GiPP1KxtZtYXBLd
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          reranking_model: null
+          score_threshold: null
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: bge-m3
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 0.7
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1792044191923'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 88
+      id: '1790664707557'
+      position:
+        x: 1326.199435324911
+        y: -393.7253898068632
+      positionAbsolute:
+        x: 1326.199435324911
+        y: -393.7253898068632
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            exclude_reasoning_tokens: true
+            reasoning_effort: minimal
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-5-mini
+          provider: langgenius/openrouter/openrouter
+        model_selector: null
+        prompt_template:
+        - id: 56ffa17e-0432-461f-ba77-c9f1ceadec55
+          role: system
+          text: '사용자의 요청을 쇼핑몰 상품 검색어로 바꿔. 검색어 한 줄만 출력해.
+
+
+            - 아이템 종류는 비슷한 말을 같이 넣어. 예: 슬랙스 → 슬랙스 팬츠 바지 트라우저 slacks pants
+
+            - 색, 소재, 핏은 한국어와 영어를 같이 넣어. 예: 검정 블랙 black, 와이드 wide
+
+            - 제외하라는 브랜드, "말고", "빼고" 같은 부정 표현, 가격 조건은 검색어에 넣지 마.
+
+
+            사용자 요청: {{#sys.query#}}'
+        selected: false
+        title: 검색어 정리
+        type: llm
+        vision:
+          enabled: false
+      height: 86
+      id: '1792044191923'
+      position:
+        x: 1381.7438062940864
+        y: -516.9980731720882
+      positionAbsolute:
+        x: 1381.7438062940864
+        y: -516.9980731720882
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#llm.text#}}'
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 102
+      id: answer
+      position:
+        x: 1873.1909156735055
+        y: -399.94725097694834
+      positionAbsolute:
+        x: 1873.1909156735055
+        y: -399.94725097694834
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1790664707557'
+          - result
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            exclude_reasoning_tokens: true
+            reasoning_effort: minimal
+            response_format: json_object
+            temperature: 0.2
+          mode: chat
+          name: openai/gpt-5-mini
+          provider: langgenius/openrouter/openrouter
+        model_selector: null
+        prompt_template:
+        - id: 3e76d31e-52cc-45e6-9020-359021d8fe62
+          role: system
+          text: '너는 패션 추천 도우미야. 사용자의 질문을 보고 아래 [상품 목록]에서만 상품을 골라 추천해.
+
+
+            ## 지켜야 할 것
+
+            - 목록에 없는 상품, 브랜드, 가격, 링크, 특징은 절대 지어내지 마.
+
+            - 브랜드, 상품명, 가격, URL은 목록에 적힌 그대로 옮겨 써. 상품명의 아이템 종류(나시, 슬리브, 셔츠, 팬츠 등)를
+            바꿔 부르지 마.
+
+            - 상품 설명은 판매자의 홍보 문구라서 그대로 베끼지 마.
+
+            - 소재, 기능(허리 조절, 신축성 등)은 상품명이나 설명에 직접 적혀 있을 때만 언급해. 적혀 있지 않으면 추측하지 말고,
+            색, 핏, 디자인처럼 상품명에서 확인되는 것만 써.
+
+
+            ## 고르는 기준
+
+            1. 1. 아이템 종류는 상품의 카테고리와 상품명을 함께 보고 넓게 판단해. 슬랙스, 팬츠, 바지, 트라우저는 모두 바지로 보고,
+            질문과 같은 카테고리면 후보로 봐. 같은 카테고리 상품이 목록에 하나도 없을 때만 "조건에 맞는 상품을 찾지 못했어요"라고 답해.
+
+            2. 아이템 종류가 맞으면, 상품명에 질문의 단어가 그대로 없어도 색, 소재, 핏, 분위기가 질문 의도에 가까운 순서로 골라.
+
+            3. 최대 3개까지 골라. 맞는 상품이 3개보다 적으면 맞는 것만 보여줘. 억지로 채우지 마.
+
+            4. 비슷하게 맞는 상품이 여럿이면 서로 다른 브랜드를 우선해.
+
+            5. 질문 조건에 완전히 맞지 않고 가장 가까운 상품을 골랐다면, 추천 이유에 어떤 점이 다른지 솔직하게 써.
+
+            6. 사용자가 제외하라고 한 브랜드는 절대 고르지 마.
+
+            7. 가격 조건이 있으면 목록의 가격을 확인해서 조건을 넘는 상품은 고르지 마.
+
+
+            ## 추천 이유 쓰는 법
+
+            - 사용자가 원하는 스타일과 어떤 점(색, 소재, 핏, 분위기)이 맞는지 네 말로 존댓말 한 문장으로 써.
+
+            - 과장된 표현, 감탄사, 느낌표는 쓰지 마.
+
+
+            ## 출력 형식
+
+            반드시 아래 JSON만 출력해. 코드블록 표시나 다른 말은 쓰지 마.
+
+            {"intro": "고른 기준 한 문장", "items": [{"url": "목록의 URL 그대로", "reason": "추천
+            이유 한 문장"}]}
+
+            맞는 상품이 없으면 {"intro": "조건에 맞는 상품을 찾지 못했어요", "items": []}
+
+
+            [상품 목록]
+
+            {{#context#}}'
+        selected: false
+        title: 추천LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 86
+      id: llm
+      position:
+        x: 1620.7134243015955
+        y: -275.80200978737065
+      positionAbsolute:
+        x: 1620.7134243015955
+        y: -275.80200978737065
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: -639.0390200147306
+      y: 442.3272261911864
+      zoom: 0.6783021536352278
+  rag_pipeline_variables: []

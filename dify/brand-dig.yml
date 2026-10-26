@@ -1,0 +1,517 @@
+app:
+  description: loupe 웹사이트 '비슷한 브랜드 더 파보기'에서 아직 수집하지 않은 국내 독립 브랜드를 웹 검색(Tavily)으로 찾고, 자사몰이 실제로 열리는 것만 돌려준다.
+  icon: ⛏️
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 브랜드 웹 디깅
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tavily:0.1.12@e4549f7c84774e734d2540e589c569346e15fb428366d6ffcbd4b7e4c1d8d5b3
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openrouter:0.1.9@8f8c69f645a62eb917ae219cfb8b567e39707941fc06c755d565ebea6cd1d88a
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      enabled: false
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+  graph:
+    nodes:
+    - data:
+        selected: false
+        desc: ''
+        title: 시작
+        type: start
+        variables:
+        - label: 출발 브랜드 (한글명 / 영문명)
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: brand
+        - label: 출발 브랜드 스타일 태그 (쉼표)
+          max_length: 256
+          options: []
+          required: false
+          type: text-input
+          variable: tags
+        - label: 이미 수집한 브랜드 도메인 (쉼표, 후보에서 제외)
+          max_length: 4000
+          options: []
+          required: false
+          type: paragraph
+          variable: known
+        - label: 이미 수집한 브랜드 이름 (쉼표, 후보에서 제외)
+          max_length: 4000
+          options: []
+          required: false
+          type: paragraph
+          variable: known_names
+      height: 90
+      id: start
+      position:
+        x: 0
+        y: 0
+      positionAbsolute:
+        x: 0
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        selected: false
+        desc: ''
+        title: 웹 검색 (Tavily)
+        type: tool
+        provider_id: langgenius/tavily/tavily
+        provider_name: langgenius/tavily/tavily
+        provider_type: builtin
+        plugin_unique_identifier: langgenius/tavily:0.1.12@e4549f7c84774e734d2540e589c569346e15fb428366d6ffcbd4b7e4c1d8d5b3
+        tool_name: tavily_search
+        tool_label: Tavily Search
+        tool_description: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas: []
+        tool_configurations:
+          max_results:
+            type: constant
+            value: 10
+          include_answer:
+            type: constant
+            value: 'false'
+          include_raw_content:
+            type: constant
+            value: 'false'
+          include_images:
+            type: constant
+            value: false
+          include_image_descriptions:
+            type: constant
+            value: false
+          include_favicon:
+            type: constant
+            value: false
+          include_usage:
+            type: constant
+            value: false
+          auto_parameters:
+            type: constant
+            value: false
+          chunks_per_source:
+            type: constant
+            value: 3
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#start.brand#}} 같은 감성 국내 디자이너 브랜드 추천 {{#start.tags#}} 자사몰'
+          search_depth:
+            type: constant
+            value: advanced
+          topic:
+            type: constant
+            value: general
+          country:
+            type: constant
+            value: south korea
+        tool_node_version: '2'
+      height: 90
+      id: web_search
+      position:
+        x: 300
+        y: 0
+      positionAbsolute:
+        x: 300
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        selected: false
+        desc: ''
+        title: 후보 고르기
+        type: llm
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            exclude_reasoning_tokens: true
+            reasoning_effort: minimal
+            temperature: 0.2
+          mode: chat
+          name: openai/gpt-5-mini
+          provider: langgenius/openrouter/openrouter
+        prompt_template:
+        - id: sys
+          role: system
+          text: "너는 한국 패션 브랜드 리서처야. 웹 검색 결과를 읽고, 출발 브랜드와 분위기가 비슷한 국내 독립(소규모·디자이너) 의류 브랜드를 찾는다.\n규칙:\n- 검색 결과에 실제로 이름이 나온 브랜드만 고른다. 지어내지 않는다.\n- '함께 즐겨찾는 브랜드', '비슷한 브랜드', 추천 기사·블로그 목록에 나온 브랜드도 후보다. 빈 목록을 내지 말고 3~5개를 고른다\n  (조건에 딱 맞는 곳이 적으면 분위기가 가장 가까운 순서로 채운다).\n- 대기업·대형 브랜드, 편집숍·쇼핑몰(무신사, 29CM, W컨셉 등), 출발 브랜드 자신, 이미 수집한 브랜드는 뺀다.\n- shop_url은 그 브랜드의 자사몰(자기 도메인) 첫 화면 주소. 검색 결과에 있으면 그대로, 없으면 확실히 아는 경우에만 쓰고 모르면 빈 문자열.\n- instagram은 공식 계정 아이디(@ 없이). 모르면 빈 문자열.\n- reason은 출발 브랜드와 비슷한 이유를 검색 결과 근거로 한국어 한 문장(60자 이내).\n- mood는 공통 무드 키워드 2~3개 (예: 빈티지, 스트릿, 페미닌, 미니멀, 캐주얼, 키치, 레이어드, 워크웨어, Y2K, 고프코어).\n- 최대 5개, 비슷한 순서대로.\nJSON만 출력: {\"brands\":[{\"name_ko\":\"\",\"name_en\":\"\",\"shop_url\":\"\",\"instagram\":\"\",\"reason\":\"\",\"mood\":[]}]}"
+        - id: usr
+          role: user
+          text: '출발 브랜드: {{#start.brand#}}
+
+            스타일: {{#start.tags#}}
+
+            이미 수집한 브랜드(제외): {{#start.known_names#}}
+
+
+            웹 검색 결과:
+
+            {{#web_search.text#}}'
+        vision:
+          enabled: false
+      height: 90
+      id: pick
+      position:
+        x: 600
+        y: 0
+      positionAbsolute:
+        x: 600
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        selected: false
+        desc: ''
+        title: 후보 이름 정리
+        type: code
+        code_language: python3
+        code: "import json\nimport re\n\nMAX_LOOKUP = 4\n\n\ndef parse(text):\n    text = re.sub(r\"^```(?:json)?|```$\", \"\", (text or \"\").strip(), flags=re.M).strip()\n    m = re.search(r\"\\{[\\s\\S]*\\}\", text)\n    try:\n        data = json.loads(m.group(0)) if m else {}\n    except json.JSONDecodeError:\n        return []\n    items = data.get(\"brands\") if isinstance(data, dict) else None\n    return items if isinstance(items, list) else []\n\n\ndef main(llm_text: str) -> dict:\n    \"\"\"자사몰을 따로 검색할 후보 이름 (자사몰 확인 노드의 valid_items와 같은 순서)\"\"\"\n    items = [i for i in parse(llm_text) if isinstance(i, dict) and str(i.get(\"name_ko\") or i.get(\"name\") or \"\").strip()][:MAX_LOOKUP]\n    names = []\n    for i in items:\n        ko = str(i.get(\"name_ko\") or i.get(\"name\") or \"\").strip()\n        en = str(i.get(\"name_en\") or \"\").strip()\n        names.append(f\"{ko} {en}\".strip() if en and en.lower() != ko.lower() else ko)\n    return {\"names\": names}\n"
+        variables:
+        - value_selector:
+          - pick
+          - text
+          value_type: string
+          variable: llm_text
+        outputs:
+          names:
+            children: null
+            type: array[string]
+      height: 90
+      id: dig_names
+      position:
+        x: 900
+        y: 0
+      positionAbsolute:
+        x: 900
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        selected: false
+        desc: ''
+        title: 후보별 자사몰 검색
+        type: iteration
+        iterator_selector:
+        - dig_names
+        - names
+        output_selector:
+        - shop_search
+        - text
+        output_type: array[string]
+        start_node_id: find_shopstart
+        is_parallel: true
+        parallel_nums: 4
+        error_handle_mode: continue-on-error
+        flatten_output: false
+      height: 200
+      id: find_shop
+      position:
+        x: 1200
+        y: 0
+      positionAbsolute:
+        x: 1200
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 520
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: find_shopstart
+      parentId: find_shop
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1224
+        y: 68
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        selected: false
+        desc: ''
+        title: 자사몰 검색
+        type: tool
+        isInIteration: true
+        iteration_id: find_shop
+        provider_id: langgenius/tavily/tavily
+        provider_name: langgenius/tavily/tavily
+        provider_type: builtin
+        plugin_unique_identifier: langgenius/tavily:0.1.12@e4549f7c84774e734d2540e589c569346e15fb428366d6ffcbd4b7e4c1d8d5b3
+        tool_name: tavily_search
+        tool_label: Tavily Search
+        tool_description: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas: []
+        tool_configurations:
+          max_results:
+            type: constant
+            value: 5
+          include_answer:
+            type: constant
+            value: 'false'
+          include_raw_content:
+            type: constant
+            value: 'false'
+          include_images:
+            type: constant
+            value: false
+          include_image_descriptions:
+            type: constant
+            value: false
+          include_favicon:
+            type: constant
+            value: false
+          include_usage:
+            type: constant
+            value: false
+          auto_parameters:
+            type: constant
+            value: false
+          chunks_per_source:
+            type: constant
+            value: 3
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#find_shop.item#}} 공식 온라인 스토어'
+          search_depth:
+            type: constant
+            value: advanced
+          topic:
+            type: constant
+            value: general
+          country:
+            type: constant
+            value: south korea
+        tool_node_version: '2'
+      height: 90
+      id: shop_search
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 1328
+        y: 68
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      parentId: find_shop
+      zIndex: 1002
+    - data:
+        selected: false
+        desc: ''
+        title: 자사몰 확인
+        type: code
+        code_language: python3
+        code: "import json\nimport re\nfrom urllib.parse import urlparse\n\nimport requests\n\n# 자사몰이 아닌 곳 (마켓·SNS·포털·블로그). 이 도메인이면 후보에서 뺀다\nNOT_SHOP = (\"musinsa.com\", \"29cm.co.kr\", \"wconcept.co.kr\", \"ably\", \"zigzag.kr\", \"kream.co.kr\", \"naver.com\", \"instagram.com\",\n            \"facebook.com\", \"youtube.com\", \"tistory.com\", \"brunch.co.kr\", \"daum.net\", \"coupang.com\", \"11st.co.kr\",\n            \"gmarket.co.kr\", \"ssg.com\", \"lotteon.com\", \"hago.kr\", \"eqlstore.com\", \"kakao.com\", \"google.com\", \"threads.net\",\n            \"pinterest.com\", \"x.com\", \"twitter.com\", \"wikipedia.org\", \"fashionbiz.co.kr\", \"vogue.co.kr\", \"hypebeast\",\n            \"fruitsfamily.com\", \"lfmall.co.kr\", \"hiver.co.kr\", \"brandi.co.kr\", \"a-bly.com\", \"zigzag\", \"bunjang.co.kr\", \"amazon.\", \"cm29\")\nMAX_PICK = 2\nGUESS_TLDS = (\"com\", \"co.kr\", \"kr\", \"shop\")\n# 쇼핑몰 페이지 표시 (장바구니, 국내 쇼핑몰 빌더). 이게 없으면 자사몰로 보지 않는다\nSHOP_SIGNS = (\"장바구니\", \"cart\", \"cafe24\"\
+          , \"imweb\", \"shopify\", \"godomall\", \"sixshop\", \"makeshop\", \"shopby\")\n# 옷 가게인지: 의류 단어가 3종류 이상 보여야 한다 (이름만 같은 과일 가게 등 거르기)\nAPPAREL = (\"아우터\", \"상의\", \"하의\", \"니트\", \"티셔츠\", \"셔츠\", \"팬츠\", \"스커트\", \"원피스\", \"자켓\", \"재킷\", \"후드\", \"맨투맨\", \"가디건\", \"데님\",\n           \"outer\", \"top\", \"bottom\", \"knit\", \"tee\", \"shirt\", \"pants\", \"skirt\", \"dress\", \"jacket\", \"hoodie\", \"denim\", \"cardigan\", \"sweat\")\nPARKED = (\"domain is for sale\", \"buy this domain\", \"hugedomains\", \"sedoparking\", \"dan.com\", \"parkingcrew\", \"도메인 구매\", \"domain parking\")\n\n\ndef domain_of(url):\n    try:\n        host = urlparse(url if \"://\" in url else \"https://\" + url).hostname or \"\"\n    except ValueError:\n        return \"\"\n    return host.lower().removeprefix(\"www.\")\n\n\ndef squash(s):\n    return re.sub(r\"[^0-9a-z가-힣]\", \"\", (s or \"\").lower())\n\n\ndef parse(text):\n    text = re.sub(r\"^```(?:json)?|```$\", \"\", (text or \"\").strip(), flags=re.M).strip()\n\
+          \    m = re.search(r\"\\{[\\s\\S]*\\}\", text)\n    try:\n        data = json.loads(m.group(0)) if m else {}\n    except json.JSONDecodeError:\n        return []\n    items = data.get(\"brands\") if isinstance(data, dict) else None\n    return items if isinstance(items, list) else []\n\n\ndef opens(url, names):\n    \"\"\"자사몰이 실제로 열리고(200번대), 그 페이지에 브랜드 이름이 보이는지\"\"\"\n    try:\n        r = requests.get(url, timeout=5, allow_redirects=True,\n                         headers={\"User-Agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126 Safari/537.36\",\n                                  \"Accept-Language\": \"ko,en;q=0.8\"})\n    except Exception as e:  # noqa: BLE001 — 접속 실패는 이유만 남긴다\n        return False, f\"접속 실패 ({type(e).__name__})\", \"\"\n    if r.status_code >= 400:\n        return False, f\"HTTP {r.status_code}\", \"\"\n    final = domain_of(r.url)\n    if any(n in final for n in NOT_SHOP):\n        return False, f\"자사몰 아님 ({final})\"\
+          , final\n    raw = r.text[:400000].lower()\n    if any(p in raw for p in PARKED):\n        return False, \"주차된 도메인\", final\n    if not any(sign in raw for sign in SHOP_SIGNS):\n        return False, \"쇼핑몰 아님\", final\n    # 화면에 보이는 글자만 본다 (CSS의 margin-top 같은 것에 걸리지 않게)\n    text = re.sub(r\"<(script|style|svg)[\\s\\S]*?</\\1>|<[^>]+>\", \" \", raw)\n    if sum(1 for w in APPAREL if (re.search(rf\"(?<![a-z]){w}s?(?![a-z])\", text) if w.isascii() else w in text)) < 3:\n        return False, \"옷 가게 아님\", final\n    body = squash(raw)\n    if not any(n and len(n) >= 2 and n in body for n in names):\n        return False, \"페이지에 브랜드 이름 없음\", final\n    return True, \"\", final\n\n\ndef guesses(url, en, insta):\n    \"\"\"LLM이 준 주소 + 영문명·인스타 아이디로 만든 자사몰 주소 후보 (국내 독립 브랜드는 대개 이름.com/.co.kr/.kr)\"\"\"\n    out = [url] if url else []\n    for slug in dict.fromkeys(s for s in (re.sub(r\"[^0-9a-z]\", \"\", (en or \"\").lower()), re.sub(r\"[^0-9a-z]\", \"\", (insta or \"\").lower().replace(\"\
+          official\", \"\"))) if len(s) >= 3):\n        out += [f\"https://{slug}.{tld}\" for tld in GUESS_TLDS]\n    return list(dict.fromkeys(out))\n\n\nMAX_LOOKUP = 4  # 자사몰을 따로 검색하는 후보 수 (이름 정리 노드와 같은 값)\n\n\ndef valid_items(llm_text):\n    return [i for i in parse(llm_text) if isinstance(i, dict) and str(i.get(\"name_ko\") or i.get(\"name\") or \"\").strip()][:MAX_LOOKUP]\n\n\ndef found_shops(text):\n    \"\"\"'공식 온라인 스토어' 검색 결과에 나온 사이트 첫 화면 주소 (마켓·SNS 제외, 나온 순서)\"\"\"\n    out = []\n    for url in re.findall(r\"\\*\\*URL:\\*\\*\\s*(\\S+)\", text or \"\"):\n        dom = domain_of(url)\n        if dom and not any(n in dom for n in NOT_SHOP):\n            out.append(f\"https://{dom}\")\n    return list(dict.fromkeys(out))[:3]\n\n\ndef main(llm_text: str, known: str, brand: str, shop_texts: list) -> dict:\n    known_set = {d.strip().lower().removeprefix(\"www.\") for d in (known or \"\").split(\",\") if d.strip()}\n    picked, checked, seen = [], [], set()\n    for idx, item in enumerate(valid_items(llm_text)):\n\
+          \        if len(picked) >= MAX_PICK:\n            continue\n        name = str(item.get(\"name_ko\") or item.get(\"name\") or \"\").strip()\n        en = str(item.get(\"name_en\") or \"\").strip()\n        url = str(item.get(\"shop_url\") or \"\").strip()\n        insta = re.sub(r\"^@|https?://(www\\.)?instagram\\.com/|/.*$\", \"\", str(item.get(\"instagram\") or \"\").strip())\n        if not name:\n            continue\n        if url and \"://\" not in url:\n            url = \"https://\" + url\n        found = None\n        shop_text = shop_texts[idx] if idx < len(shop_texts or []) and isinstance(shop_texts[idx], str) else \"\"\n        for cand in list(dict.fromkeys(found_shops(shop_text) + guesses(url, en or name, insta))):\n            dom = domain_of(cand)\n            row = {\"name\": name, \"en\": en, \"url\": cand}\n            if not dom or dom in seen:\n                continue\n            seen.add(dom)\n            if dom in known_set or any(dom.endswith(\".\" +\
+          \ k) for k in known_set):\n                checked.append({**row, \"ok\": False, \"why\": \"이미 수집한 브랜드\"})\n                break\n            if any(n in dom for n in NOT_SHOP):\n                checked.append({**row, \"ok\": False, \"why\": \"자사몰 아님\"})\n                continue\n            ok, why, final = opens(cand, [squash(name), squash(en)])\n            checked.append({**row, \"ok\": ok, \"why\": why})\n            if ok:\n                if final in known_set:\n                    break\n                found = (cand, final or dom)\n                break\n        if not found:\n            continue\n        url, dom = found\n        picked.append({\n            \"name\": name, \"en\": en, \"url\": url, \"domain\": dom,\n            \"instagram\": f\"https://www.instagram.com/{insta}/\" if re.fullmatch(r\"[A-Za-z0-9._]{2,30}\", insta or \"\") else \"\",\n            \"reason\": str(item.get(\"reason\") or \"\").strip()[:200],\n            \"mood\": [str(t) for t in (item.get(\"\
+          mood\") or [])][:3],\n        })\n    return {\"result\": json.dumps({\"from\": brand, \"candidates\": picked, \"checked\": checked}, ensure_ascii=False)}\n"
+        variables:
+        - value_selector:
+          - pick
+          - text
+          value_type: string
+          variable: llm_text
+        - value_selector:
+          - start
+          - known
+          value_type: string
+          variable: known
+        - value_selector:
+          - start
+          - brand
+          value_type: string
+          variable: brand
+        - value_selector:
+          - find_shop
+          - output
+          value_type: array[string]
+          variable: shop_texts
+        outputs:
+          result:
+            children: null
+            type: string
+      height: 90
+      id: web_dig_verify
+      position:
+        x: 1800
+        y: 0
+      positionAbsolute:
+        x: 1800
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        selected: false
+        desc: ''
+        title: 끝
+        type: end
+        outputs:
+        - value_selector:
+          - web_dig_verify
+          - result
+          value_type: string
+          variable: result
+      height: 90
+      id: end
+      position:
+        x: 2100
+        y: 0
+      positionAbsolute:
+        x: 2100
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: start-source-web_search-target
+      source: start
+      sourceHandle: source
+      target: web_search
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: web_search-source-pick-target
+      source: web_search
+      sourceHandle: source
+      target: pick
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: pick-source-dig_names-target
+      source: pick
+      sourceHandle: source
+      target: dig_names
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: dig_names-source-find_shop-target
+      source: dig_names
+      sourceHandle: source
+      target: find_shop
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        sourceType: iteration-start
+        targetType: tool
+        iteration_id: find_shop
+      id: find_shopstart-source-shop_search-target
+      source: find_shopstart
+      sourceHandle: source
+      target: shop_search
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: code
+      id: find_shop-source-web_dig_verify-target
+      source: find_shop
+      sourceHandle: source
+      target: web_dig_verify
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: web_dig_verify-source-end-target
+      source: web_dig_verify
+      sourceHandle: source
+      target: end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    viewport:
+      x: 0
+      y: 0
+      zoom: 1
+  rag_pipeline_variables: []
